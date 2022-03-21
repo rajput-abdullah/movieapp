@@ -51,7 +51,7 @@ class _MovieWatchTrailerScreenState extends State<MovieWatchTrailerScreen> {
           width: MediaQuery.of(context).size.width,
           child: YoutubePlayer(
             aspectRatio: 4 / 3,
-            controlsTimeOut: Duration(seconds: 5),
+            controlsTimeOut: Duration(seconds: 3),
             controller: _controller!,
             showVideoProgressIndicator: true,
             progressColors: ProgressBarColors(

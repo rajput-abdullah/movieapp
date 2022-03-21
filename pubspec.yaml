@@ -50,9 +50,6 @@ dependencies:
   #Toast
   fluttertoast: ^8.0.8
 
-  #Flutter VideoPlayer
-  video_player: ^2.3.0
-
   #YouTube Player Flutter
   youtube_player_flutter: ^8.0.0
 

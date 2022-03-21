@@ -16,7 +16,7 @@ class MainHomeScreen extends StatefulWidget {
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
   late List<Widget> _screens;
-  int _activeIndex = 0;
+  int _activeIndex = 1;
 
   @override
   void initState() {

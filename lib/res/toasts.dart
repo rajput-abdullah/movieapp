@@ -4,6 +4,7 @@ import 'package:movieapp/globals/my_globals.dart';
 import 'colors.dart';
 
 class Toasts {
+  //custom toasts class
 
   static getErrorToast({@required String? text}) async {
 
@@ -12,8 +13,8 @@ class Toasts {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
-        backgroundColor: Colors.white,
-        textColor: Colors.red,
+        backgroundColor: AppColors.redColor,
+        textColor: AppColors.whiteColor,
         fontSize: MyGlobals.getFontRatio() * 16.0
     );
   }
@@ -25,8 +26,8 @@ class Toasts {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
-        backgroundColor: AppColors.primaryColor,
-        textColor: Colors.white,
+        backgroundColor: AppColors.lightBlue,
+        textColor: AppColors.whiteColor,
         fontSize: MyGlobals.getFontRatio() * 16.0
     );
   }
@@ -38,8 +39,8 @@ class Toasts {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
-        backgroundColor: Colors.orange,
-        textColor: Colors.white,
+        backgroundColor: AppColors.darkYellow,
+        textColor: AppColors.whiteColor,
         fontSize: MyGlobals.getFontRatio() * 16.0
     );
   }

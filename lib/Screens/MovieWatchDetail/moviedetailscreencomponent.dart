@@ -1,8 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:movieapp/Screens/MovieWatchTrailer/moviewatchtrailerscreen.dart';
+import 'package:movieapp/animations/slide_right.dart';
 import 'package:movieapp/res/assets.dart';
 import 'package:movieapp/res/colors.dart';
 import 'package:movieapp/res/res.dart';
+import 'package:movieapp/res/toasts.dart';
 import 'package:movieapp/widgets/common_widgets.dart';
 
 class MovieDetailScreenComponents {
@@ -42,7 +47,8 @@ class MovieDetailScreenComponents {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(sizes.width * 0.02),
-                          color: AppColors.lightBlue),
+                          color: Colors.primaries[
+                              Random().nextInt(Colors.primaries.length)]),
                       child: CommonWidgets.customText(
                           text:
                               "${movieWatchDetailProvider?.movieDetailResponse.genres?[index].name}",
@@ -78,7 +84,7 @@ class MovieDetailScreenComponents {
           ),
           CommonWidgets.customText(
               text: "${movieWatchDetailProvider?.movieDetailResponse.overview}",
-              lines: 20,
+              lines: 12,
               fontWeight: FontWeight.normal,
               fontSize: sizes.mediumFontSize,
               fontFamily: Assets.poppinsMedium,
@@ -201,7 +207,22 @@ class MovieDetailScreenComponents {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: AppColors.whiteColor),
                       borderRadius: BorderRadius.circular(sizes.width * 0.03)),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (movieWatchDetailProvider
+                        .getMovieTrailerVideoListResponse.results!.isNotEmpty) {
+                      Navigator.push(
+                          context,
+                          SlideRightRoute(
+                              page: MovieWatchTrailerScreen(
+                                  trailerKey: movieWatchDetailProvider
+                                      .getMovieTrailerVideoListResponse
+                                      .results?[0]
+                                      .key)));
+                    } else {
+                      Toasts.getWarningToast(
+                          text: "No Trailer Found For this Movie");
+                    }
+                  },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,

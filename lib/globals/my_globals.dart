@@ -7,5 +7,4 @@ class MyGlobals {
   static double getHeightRatio() => sizes.heightRatio;
 
   static double getFontRatio() => sizes.fontRatio;
-
 }

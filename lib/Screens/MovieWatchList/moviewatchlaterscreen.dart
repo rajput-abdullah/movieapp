@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movieapp/Models/upcoming_movies_response.dart';
+import 'package:movieapp/Screens/MovieFilteredList/moviefilteredscreen.dart';
 import 'package:movieapp/Screens/MovieWatchList/moviewatchlistcomponents.dart';
 import 'package:movieapp/Screens/MovieWatchList/moviewatchlistprovider.dart';
-import 'package:movieapp/Screens/moviewatchdetailed/moviewatchdetailscreen.dart';
+import 'package:movieapp/Screens/MovieWatchDetail/moviewatchdetailscreen.dart';
 import 'package:movieapp/animations/slide_right.dart';
 import 'package:movieapp/res/assets.dart';
 import 'package:movieapp/res/colors.dart';
@@ -19,7 +19,6 @@ class MovieWatchLaterScreen extends StatefulWidget {
 }
 
 class _MovieWatchLaterScreenState extends State<MovieWatchLaterScreen> {
-  TextEditingController? searchController;
   bool? typing;
   late MovieWatchListProvider movieWatchListProvider;
 
@@ -29,7 +28,6 @@ class _MovieWatchLaterScreenState extends State<MovieWatchLaterScreen> {
         Provider.of<MovieWatchListProvider>(context, listen: false);
     movieWatchListProvider.init(context: context);
     typing = false;
-    searchController = TextEditingController();
     super.initState();
   }
 
@@ -42,8 +40,20 @@ class _MovieWatchLaterScreenState extends State<MovieWatchLaterScreen> {
             toolbarHeight: sizes.height * 0.09,
             title:
             // typing??false ?
-            TextField(
-              controller: searchController,
+            TextFormField(
+              controller: movieWatchListProvider.searchController,
+              onFieldSubmitted: (value) async {
+                await movieWatchListProvider.getUpcomingMoviesFilteredList(
+                  movieWatchListProvider.searchController?.text.trim(),);
+                if (movieWatchListProvider.isFilteredApiHit??false) {
+
+                  Navigator.push(
+                      context,
+                      SlideRightRoute(
+                          page: MovieFilteredScreen(movieFilteredResponse: movieWatchListProvider.movieFilteredResponse)));
+
+                }
+              },
               maxLength: 50,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.name,
@@ -92,7 +102,7 @@ class _MovieWatchLaterScreenState extends State<MovieWatchLaterScreen> {
                   hintStyle: TextStyle(
                       color: AppColors.textColor,
                       fontFamily: Assets.poppinsMedium,
-                      fontSize: getFontRatio() * 12),
+                      fontSize: getFontRatio() * 17),
                   counterText: "",
                   hintText: "Watch",
                   suffixIcon: IconButton(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/Screens/moviewatchdetailed/moviedetailprovider.dart';
-import 'package:movieapp/Screens/moviewatchdetailed/moviedetailscreencomponent.dart';
+import 'package:movieapp/Screens/MovieWatchDetail/moviedetailprovider.dart';
+import 'package:movieapp/Screens/MovieWatchDetail/moviedetailscreencomponent.dart';
 import 'package:movieapp/res/colors.dart';
 import 'package:movieapp/res/res.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +34,8 @@ class _MovieWatchDetailScreenState extends State<MovieWatchDetailScreen> {
         color: AppColors.whiteColor,
         height: sizes.height,
         width: sizes.width,
-        child: movieWatchDetailProvider?.isApiHit??false ?SingleChildScrollView(
+        child: movieWatchDetailProvider?.isApiHit??false ?
+        SingleChildScrollView(
           child: Column(
             children: [
               MovieDetailScreenComponents.firstHalfScreen(movieWatchDetailProvider, widget.posterPath, context),

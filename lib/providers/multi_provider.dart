@@ -1,6 +1,6 @@
 
+import 'package:movieapp/Screens/MovieWatchDetail/moviedetailprovider.dart';
 import 'package:movieapp/Screens/MovieWatchList/moviewatchlistprovider.dart';
-import 'package:movieapp/Screens/moviewatchdetailed/moviedetailprovider.dart';
 import 'package:provider/provider.dart';
 
 final multiProviders = [
